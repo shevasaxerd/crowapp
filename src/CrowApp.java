@@ -14,36 +14,55 @@ public class CrowApp extends JFrame {
    private ArrayList<Point> crowPositions;
    private JLabel label;
    private JButton button;
+   private JPanel panel;
+   private ImagePanel imagePanel;
 
     public CrowApp() {
         super("Crow");
         crowCount = 0;
         random = new Random();
         crowPositions = new ArrayList<>();
-        crowImage = new ImageIcon("crow1.png").getImage();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         setSize(600, 400);
-        setLayout(null);
-        label = new JLabel("Number of crows: " + crowCount);
-        label.setBounds(200, 20, 150, 30);
-        add(label);
+        //setLayout(null);
 
+
+        panel = new JPanel();
+        imageSettings();
+        labelSettings();
+        buttonSettings();
+        panel.add(button);
+        panel.add(label);
+
+
+
+        add(panel, BorderLayout.NORTH);
+        setVisible(true);
+
+    }
+
+    void buttonSettings(){
         button = new JButton("Add crow");
         button.setBounds(20, 20,150,30);
-
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 crowCount++;
                 label.setText("Number of crows: " + crowCount);
-                repaint();
+                imagePanel.addImageAtRandomPosition();
             }
         });
-
-        add(label);
-        add(button);
-        setVisible(true);
     }
+    void labelSettings(){
+        label = new JLabel("Number of crows: " + crowCount);
+        label.setBounds(200, 20, 150, 30);
+    }
+    void imageSettings(){
+        crowImage = new ImageIcon("crow1.png").getImage();
+        imagePanel = new ImagePanel(crowImage);
+        add(imagePanel, BorderLayout.CENTER);
+    }
+
+
 
 }
