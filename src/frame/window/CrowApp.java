@@ -56,7 +56,7 @@ public class CrowApp extends JFrame {
         label.setBounds(200, 20, 150, 30);
     }
     void imageSettings(){
-        crowImage = new ImageIcon("crow1.png").getImage();
+        crowImage = new ImageIcon("src/images/crow1.png").getImage();
         imagePanel = new ImagePanel(crowImage);
         add(imagePanel, BorderLayout.CENTER);
     }
