@@ -1,13 +1,12 @@
 package frame.window;
 
 import frame.panel.ImagePanel;
-import services.CountingCrowService;
+import services.CountingCrowServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Random;
 
 public class CrowApp extends JFrame {
    private Image crowImage;
@@ -15,12 +14,12 @@ public class CrowApp extends JFrame {
    private JButton button;
    private JPanel panel;
    private ImagePanel imagePanel;
-   private CountingCrowService countingCrowService;
+   private CountingCrowServiceImpl countingCrowServiceImpl;
 
     public CrowApp() {
         super("Crow");
-        countingCrowService = new CountingCrowService();
-        countingCrowService.count = 0;
+        countingCrowServiceImpl = new CountingCrowServiceImpl();
+        countingCrowServiceImpl.count = 0;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 400);
         //setLayout(null);
@@ -46,14 +45,14 @@ public class CrowApp extends JFrame {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                countingCrowService.increment();
-                label.setText("Number of crows: " + countingCrowService.count);
+                countingCrowServiceImpl.increment();
+                label.setText("Number of crows: " + countingCrowServiceImpl.count);
                 imagePanel.addImageAtRandomPosition();
             }
         });
     }
     void labelSettings(){
-        label = new JLabel("Number of crows: " + countingCrowService.count);
+        label = new JLabel("Number of crows: " + countingCrowServiceImpl.count);
         label.setBounds(200, 20, 150, 30);
     }
     void imageSettings(){
